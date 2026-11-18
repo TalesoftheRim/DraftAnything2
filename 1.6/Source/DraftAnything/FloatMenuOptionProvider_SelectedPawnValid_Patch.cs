@@ -9,12 +9,9 @@ namespace DraftAnything
     {
         public static void Postfix(FloatMenuOptionProvider __instance, ref bool __result, Pawn pawn, FloatMenuContext context)
         {
-            if (__instance is FloatMenuOptionProvider_DraftedMove)
+            if (!__result && __instance is FloatMenuOptionProvider_DraftedMove && pawn != null && pawn.IsControllable() && pawn.Drafted)
             {
-                if (pawn.IsControllable() && pawn.Drafted)
-                {
-                    __result = true;
-                }
+                __result = true;
             }
         }
     }

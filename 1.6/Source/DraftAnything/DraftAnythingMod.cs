@@ -18,10 +18,13 @@ namespace DraftAnything
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            Listing_Standard listingStandard = new Listing_Standard();
-            listingStandard.Begin(inRect);
-            listingStandard.CheckboxLabeled("DA_PermanentDrafting".Translate(), ref settings.permanentDrafting, "DA_PermanentDraftingTooltip".Translate());
-            listingStandard.End();
+            if (settings != null)
+            {
+                Listing_Standard listingStandard = new Listing_Standard();
+                listingStandard.Begin(inRect);
+                listingStandard.CheckboxLabeled("DA_PermanentDrafting".Translate(), ref settings.permanentDrafting, "DA_PermanentDraftingTooltip".Translate());
+                listingStandard.End();
+            }
             base.DoSettingsWindowContents(inRect);
         }
 

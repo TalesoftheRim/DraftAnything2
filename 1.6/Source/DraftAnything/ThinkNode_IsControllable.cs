@@ -7,7 +7,7 @@ namespace DraftAnything
     {
         public override bool Satisfied(Pawn pawn)
         {
-            return pawn.IsControllable();
+            return pawn != null && pawn.IsControllable() && pawn.Drafted;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using Verse;
 
 namespace DraftAnything
@@ -8,11 +8,15 @@ namespace DraftAnything
     {
         public static void Prefix(Pawn __instance, ref bool allowedToJoinOrCreateCaravan)
         {
-            if (__instance.IsControllable(out var comp) && comp != null)
+            if (__instance != null && __instance.IsControllable(out var comp) && comp != null)
             {
+                bool isPlayerFaction = __instance.Faction != null && __instance.Faction.IsPlayer;
                 __instance.RestoreOriginalState();
 
-                allowedToJoinOrCreateCaravan = false;
+                if (!isPlayerFaction)
+                {
+                    allowedToJoinOrCreateCaravan = false;
+                }
             }
         }
     }
